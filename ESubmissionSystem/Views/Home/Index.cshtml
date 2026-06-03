@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron" style="background-color: #222; color: white;">
+    <h1>E-Submission Portal</h1>
+    <p class="lead">Welcome to the centralized approval management system. Submit your claims, track status, and manage approvals efficiently.</p>
+    <p><a asp-controller="Submissions" asp-action="Create" class="btn btn-primary btn-lg">Submit a New Claim &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2><i class="glyphicon glyphicon-list-alt"></i> Easy Submission</h2>
+        <p>
+            Submit Medical, Mileage, and Leave claims in just a few clicks. Our system ensures your data is routed directly to your line manager.
+        </p>
+        <p><a class="btn btn-default" asp-controller="Submissions" asp-action="Index">View History &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2><i class="glyphicon glyphicon-time"></i> Real-time Tracking</h2>
+        <p>
+            No more wondering where your request is. Check the live status of your submissions (Pending, Approved, or Rejected) instantly.
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2><i class="glyphicon glyphicon-lock"></i> Secure & Private</h2>
+        <p>
+            Your data is protected. Claims are only visible to you and authorized management personnel, ensuring strict confidentiality.
+        </p>
+    </div>
+</div>

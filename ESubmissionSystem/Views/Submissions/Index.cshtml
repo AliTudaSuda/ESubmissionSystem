@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ESubmissionSystem.Models.Submission>
+
+@{
+    ViewData["Title"] = "Submission List";
+}
+
+<h2>My Submissions</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Claim</a>
+</p>
+
+<form asp-controller="Submissions" asp-action="Index" method="get">
+    <p>
+        Title: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </p>
+</form>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @if (item.Status == "Approved")
+                    {
+                        <span class="label label-success">Approved</span>
+                    }
+                    else if (item.Status == "Rejected")
+                    {
+                        <span class="label label-danger">Rejected</span>
+                    }
+                    else
+                    {
+                        <span class="label label-warning">Pending</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserEmail)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+
+                    @if (item.Status == "Pending")
+                    {
+                        <span>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Withdraw</a>
+                        </span>
+                    }
+
+                    @if (User.IsInRole("Management") || User.IsInRole("Admin") || User.Identity.Name == "manager@sunway.edu")
+                    {
+                        <span> | </span>
+                        <a asp-action="Approve" asp-route-id="@item.Id" class="text-success" style="font-weight:bold; color:green;">Approve</a> <span> | </span>
+                        <a asp-action="Reject" asp-route-id="@item.Id" class="text-danger" style="font-weight:bold; color:red;">Reject</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

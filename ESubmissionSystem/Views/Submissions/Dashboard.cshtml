@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Manager Dashboard";
+}
+
+<div class="container">
+    <h2>Manager Dashboard</h2>
+    <p class="lead">Overview of all claim activities.</p>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Pending Review</h3>
+                </div>
+                <div class="panel-body" style="font-size: 30px; text-align: center; font-weight: bold;">
+                    @ViewBag.PendingCount
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Approved Claims</h3>
+                </div>
+                <div class="panel-body" style="font-size: 30px; text-align: center; font-weight: bold;">
+                    @ViewBag.ApprovedCount
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Rejected Claims</h3>
+                </div>
+                <div class="panel-body" style="font-size: 30px; text-align: center; font-weight: bold;">
+                    @ViewBag.RejectedCount
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Total Disbursed</h3>
+                </div>
+                <div class="panel-body" style="font-size: 30px; text-align: center; font-weight: bold;">
+                    $@ViewBag.TotalAmount
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <a asp-action="Index" class="btn btn-primary btn-lg btn-block">Manage Applications (Go to List)</a>
+</div>

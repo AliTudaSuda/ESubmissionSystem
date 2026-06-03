@@ -1,0 +1,44 @@
+﻿@model ESubmissionSystem.Models.Submission
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Claim Details</h2>
+
+<div>
+    <h4>Submission Information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Description)</dt>
+        <dd>@Html.DisplayFor(model => model.Description)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Amount)</dt>
+        <dd>$@Html.DisplayFor(model => model.Amount)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Status)</dt>
+        <dd>
+            @if (Model.Status == "Approved")
+            {
+                <span class="label label-success">Approved</span>
+            }
+            else if (Model.Status == "Rejected")
+            {
+                <span class="label label-danger">Rejected</span>
+            }
+            else
+            {
+                <span class="label label-warning">Pending Review</span>
+            }
+        </dd>
+
+        <dt>@Html.DisplayNameFor(model => model.CreatedDate)</dt>
+        <dd>@Html.DisplayFor(model => model.CreatedDate)</dd>
+
+        <dt>Submitted By</dt>
+        <dd>@Html.DisplayFor(model => model.UserEmail)</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-default">Back to List</a>
+</div>
